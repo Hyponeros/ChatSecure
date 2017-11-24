@@ -1,0 +1,8 @@
+/Users/Kous92/Documents/C#/TestTCPListener/Server/obj/x86/Debug/Server.csprojResolveAssemblyReference.cache
+/Users/Kous92/Documents/C#/TestTCPListener/Server/obj/x86/Debug/Server.csproj.CoreCompileInputs.cache
+/Users/Kous92/Documents/C#/TestTCPListener/Server/bin/Debug/Server.exe
+/Users/Kous92/Documents/C#/TestTCPListener/Server/bin/Debug/Server.pdb
+/Users/Kous92/Documents/C#/TestTCPListener/Server/bin/Debug/Communication.dll
+/Users/Kous92/Documents/C#/TestTCPListener/Server/bin/Debug/Communication.pdb
+/Users/Kous92/Documents/C#/TestTCPListener/Server/obj/x86/Debug/Server.exe
+/Users/Kous92/Documents/C#/TestTCPListener/Server/obj/x86/Debug/Server.pdb
