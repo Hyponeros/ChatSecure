@@ -13,16 +13,15 @@ namespace Communication
 {
     public class Net
     {
-        // Sérialisation au format binaire
-        public static void sendMsg(NetworkStream s, TextMessage msg)
+        // Envoi du message avec sérialisation au format binaire
+        public static void SendMessage(Stream s, TextMessage msg)
         {
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(s, msg);
-            s.Flush();
         }
 
-        // Déserialisation
-        public static TextMessage receiveMsg(NetworkStream s)
+        // Réception du message avec déserialisation
+        public static TextMessage ReceiveMessage(Stream s)
         {
             BinaryFormatter bf = new BinaryFormatter();
             return (TextMessage)bf.Deserialize(s);
@@ -44,31 +43,47 @@ namespace Communication
             StreamReader sr = new StreamReader(client.GetStream());
             Console.WriteLine(" -> Extraction du message...");
             string line = "";
-
             TextMessage msg = new TextMessage("", "", "", false);
             int found = 0;
 
-            while ((line = sr.ReadLine()) != null)
-            {
-                found = line.IndexOf(":"); // Extract point
-                Console.WriteLine(line);
+            string s1 = string.Empty;
+            string s2 = string.Empty;
+            string s3 = string.Empty;
 
-                if (line.Substring(0, found) == "date")
+            try
+            {
+                for (int i = 0; i < 3; i++)
                 {
-                    msg._datetime = line.Substring(found + 1); 
+                    line = sr.ReadLine();
+                    found = line.IndexOf(":"); // Extract point
+
+                    if (line.Substring(0, found) == "date")
+                    {
+                        s1 = line.Substring(found + 1);
+                        msg._datetime = line.Substring(found + 1);
+                        // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                    }
+                    else if (line.Substring(0, found) == "user")
+                    {
+                        s2 = line.Substring(found + 1);
+                        msg._username = line.Substring(found + 1);
+                        // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                    }
+                    else if (line.Substring(0, found) == "msg")
+                    {
+                        s3 = line.Substring(found + 1);
+                        msg._message = line.Substring(found + 1);
+                        // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Erreur...");
+                    }
                 }
-                else if (line.Substring(0, found) == "user")
-                {
-                    msg._username = line.Substring(found + 1); 
-                }
-                else if (line.Substring(0, found) == "msg")
-                {
-                    msg._message = line.Substring(found + 1); 
-                }
-                else
-                {
-                    Console.WriteLine("Erreur...");
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
 
             return msg;

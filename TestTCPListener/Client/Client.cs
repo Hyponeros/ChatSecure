@@ -17,7 +17,7 @@ namespace Client
     {
         private string hostname;
         private int port;
-        private static TextMessage msg;
+        private TextMessage msg;
 
         public Client(string h, int p)
         {
@@ -41,7 +41,7 @@ namespace Client
             Thread threadReceiver = new Thread(new ParameterizedThreadStart(receiveServerBroadcast));
             threadReceiver.Start(comm);
 
-            StreamWriter sw = new StreamWriter(comm.GetStream());
+            // StreamWriter sw = new StreamWriter(comm.GetStream());
 
             Console.WriteLine("==========================");
             Console.WriteLine("====      ChatBox     ====");
@@ -61,12 +61,15 @@ namespace Client
                     msg._datetime = localDate.ToString();
                     msg._error = false;
 
-                    sw.WriteLine("date:" + localDate.ToString());
-                    sw.WriteLine("user:" + username);
-                    sw.WriteLine("msg:" + message);
-                    Console.WriteLine("\n>>> Envoi du message: \"" + message + "\" au serveur");
-                    sw.Flush();
+                    /*
+                    sw.WriteLine("date:" + msg._datetime);
+                    sw.WriteLine("user:" + msg._username);
+                    sw.WriteLine("msg:" + msg._message);
+                    sw.Flush(); */
 
+                    Console.WriteLine("\n>>> Envoi du message: \"" + msg._message + "\" au serveur");
+                    // Net.SendMessageNotSerialized(comm, msg);
+                    Net.SendMessage(comm.GetStream(), msg);
                 }
 
                 // Net.SendMessageNotSerialized(comm, new TextMessage(username, message, localDate.ToString(), false));
@@ -98,11 +101,12 @@ namespace Client
 
             while (true)
             {
-                string line = "";
-                int found = 0;
+                // string line = "";
+                // int found = 0;
 
                 try
                 {
+                    /*
                     string s1 = string.Empty;
                     string s2 = string.Empty;
                     string s3 = string.Empty;
@@ -133,9 +137,11 @@ namespace Client
                         {
                             Console.WriteLine("Erreur...");
                         }
-                    }
+                    } */
 
-                    Console.WriteLine("[" + s1 + "] " + s2 + " > " + s3);
+                    // msg = Net.ReceiveMessageNotSerialized(client);
+                    msg = Net.ReceiveMessage(client.GetStream());
+                    Console.WriteLine("[" + msg._datetime + "] " + msg._username + " > " + msg._message);
                 }
                 catch (Exception e)
                 {

@@ -29,7 +29,7 @@ namespace Server
         // Le serveur reçoit les messages avant de les diffuser
         public void doOperation()
         {
-            StreamReader sr = new StreamReader(comm.GetStream());
+            // StreamReader sr = new StreamReader(comm.GetStream());
             // TextMessage msg = new TextMessage("", "", "", false);
                 
             while (true)
@@ -45,15 +45,18 @@ namespace Server
                 */
 
                 Console.WriteLine(">>> En attente d'un message ...");
+                /*
                 string line = "";
                 int found = 0;
 
                 string s1 = string.Empty;
                 string s2 = string.Empty;
                 string s3 = string.Empty;
+                */
 
                 try
                 {
+                    /*
                     for (int i = 0; i < 3; i++)
                     {
                         line = sr.ReadLine();
@@ -82,9 +85,13 @@ namespace Server
                             Console.WriteLine("Erreur...");
                         }
                     }
+                    */
 
-                    Console.WriteLine(" -> Message reçu (" + s1 + "): " + s2 + " > " + s3 + ")");
-                    messageBroadcast(s1, s2, s3, comm);
+                    // msg = Net.ReceiveMessageNotSerialized(comm);
+                    msg = Net.ReceiveMessage(comm.GetStream());
+                    Console.WriteLine(" -> Message reçu (" + msg._datetime + "): " + msg._username + " > " + msg._message + ")");
+
+                    messageBroadcast(msg, comm);
                 }
                 catch (Exception e)
                 {
@@ -97,27 +104,25 @@ namespace Server
            // Console.WriteLine("[" + msg._datetime + "] " + msg._username + " > " + msg._message);
         }
 
-        public void messageBroadcast(string date, string username, string message, TcpClient excludeClient)
+        public void messageBroadcast(TextMessage msgBroad, TcpClient excludeClient)
         {
             // Diffusion du message
             foreach (TcpClient stream in comm_list)
             {
                 Console.WriteLine("Test...");
-                /*
-                Console.WriteLine(stream);
-                StreamWriter sw = new StreamWriter(stream.GetStream());
-                string request = stream.ToString();
-                sw.WriteLine(request);
-                sw.AutoFlush = true;
-                */
+
                 if (stream != excludeClient)
                 {
+                    /*
                     StreamWriter sw = new StreamWriter(stream.GetStream());
-                    Console.WriteLine(">>> Diffusion du message de " + username + "(@" + comm.Client.RemoteEndPoint + ")");
-                    sw.WriteLine("date:" + date);
-                    sw.WriteLine("user:" + username);
-                    sw.WriteLine("msg:" + message);
+                    Console.WriteLine(">>> Diffusion du message de " + msgBroad._username + "(@" + comm.Client.RemoteEndPoint + ")");
+                    sw.WriteLine("date:" + msgBroad._datetime);
+                    sw.WriteLine("user:" + msgBroad._username);
+                    sw.WriteLine("msg:" + msgBroad._message);
                     sw.Flush();
+                    */
+                    // Net.SendMessageNotSerialized(stream, msgBroad);
+                    Net.SendMessage(stream.GetStream(), msgBroad);
                 }
 
                 // Net.SendMessageNotSerialized(stream, new TextMessage(msg._username, msg._message, msg._datetime, msg._error));
