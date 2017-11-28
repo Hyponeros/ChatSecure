@@ -25,27 +25,6 @@ namespace Client
             comm_list = cl;
         }
 
-        public void doOperation()
-        {
-            Console.WriteLine(">>> Envoi du message aux clients...");
 
-            while (true)
-            {
-                // Lecture du message
-                TextMessage msg = (TextMessage)Net.receiveMsg(comm.GetStream());
-
-                // Console.WriteLine(" -> Message reçu (" + msg._datetime + "): " + msg._message + " > " + msg._username + ")");
-
-                // Envoi du message
-                foreach (TcpClient stream in comm_list)
-                {
-                    Console.WriteLine(stream);
-                    StreamWriter sw = new StreamWriter(stream.GetStream());
-                    sw.WriteLine();
-                    sw.AutoFlush = true;
-                    Net.sendMsg(stream.GetStream(), new TextMessage(msg._username, msg._message, msg._datetime, msg._error));
-                }
-            }
-        }
     }
 }

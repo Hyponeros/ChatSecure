@@ -16,8 +16,11 @@ namespace Server
     public class Server
     {
         private int port;
-        private int connected_users;
-        private List<TcpClient> comm_list = new List<TcpClient>();
+        private static int connected_users;
+
+        // La liste des clients est commune à tous les threads que chaque client exécute
+        private static TcpListener responseListener;
+        private static List<TcpClient> comm_list = new List<TcpClient>();
 
         // Constructeur initialisant le port défini
         public Server(int port)
@@ -28,15 +31,20 @@ namespace Server
         public void startServer()
         {
             // 127.0.0.1: IP du serveur local localhost avec un port quelconque donné.
-            TcpListener l = new TcpListener(new IPAddress(new byte[] { 127, 0, 0, 1 }), port);
-            l.Start();
+            responseListener  = new TcpListener(IPAddress.Any, port);
+            responseListener.Start(); // Démarrage de l'écoute
+            connected_users = 0;
 
             while (true)
             {
-                TcpClient comm = l.AcceptTcpClient();
-                Console.WriteLine(">>> Connexion établie @" + comm);
+                TcpClient comm = responseListener.AcceptTcpClient();
+                Console.WriteLine(">>> Connexion établie @" + comm.Client.RemoteEndPoint);
+                connected_users++;
+                Console.WriteLine("-> Utilisateurs en ligne: " + connected_users);
                 comm_list.Add(comm);
-                new Thread(new Receiver(comm, comm_list).doOperation).Start();
+
+                Thread receiverThread = new Thread(new Receiver(comm, comm_list).doOperation);
+                receiverThread.Start();
             }
         }
     }

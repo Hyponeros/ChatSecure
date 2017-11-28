@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{33AECFF3-0EC5-43F3-B05B-FCFDDD06BCAB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Server.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Program.cs">
     <Files>
-      <File FileName="Server/Program.cs" Line="20" Column="1" />
-      <File FileName="Server/Server.cs" Line="19" Column="21" />
-      <File FileName="Server/Receiver.cs" Line="12" Column="34" />
-      <File FileName="Client/Client.cs" Line="41" Column="23" />
+      <File FileName="Server/Server.cs" Line="40" Column="30" />
+      <File FileName="Server/Program.cs" Line="14" Column="50" />
+      <File FileName="Server/Receiver.cs" Line="111" Column="19" />
+      <File FileName="Client/Client.cs" Line="143" Column="15" />
       <File FileName="Client/Program.cs" Line="12" Column="17" />
-      <File FileName="Communication/MyClass.cs" Line="33" Column="27" />
-      <File FileName="Client/Sender.cs" Line="1" Column="1" />
+      <File FileName="Communication/Net.cs" Line="9" Column="26" />
+      <File FileName="Communication/TextMessage.cs" Line="83" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

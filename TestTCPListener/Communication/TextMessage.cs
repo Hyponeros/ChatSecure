@@ -11,30 +11,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Communication
 {
-    public class Net
-    {
-        // Sérialisation au format binaire
-        public static void sendMsg(Stream s, Message msg)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(s, msg);
-        }
-
-        // Déserialisation
-        public static Message receiveMsg(Stream s)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            return (Message)bf.Deserialize(s);
-        }
-    }
-
-    public interface Message
-    {
-        string ToString();
-    }
-
     [Serializable]
-    public class TextMessage : Message
+    public class TextMessage
     {
         private string username;
         private string message;
@@ -51,7 +29,7 @@ namespace Communication
 
         public TextMessage()
         {
-            
+            this.error = false;
         }
 
         public string _username
@@ -59,6 +37,11 @@ namespace Communication
             get
             {
                 return username;
+            }
+
+            set
+            {
+                username = value;
             }
         }
 
@@ -68,6 +51,11 @@ namespace Communication
             {
                 return message;
             }
+
+            set
+            {
+                message = value;
+            }
         }
 
         public string _datetime
@@ -75,6 +63,11 @@ namespace Communication
             get
             {
                 return datetime;
+            }
+
+            set
+            {
+                datetime = value;
             }
         }
 
@@ -87,13 +80,13 @@ namespace Communication
 
             set
             {
-                error = _error;
+                error = value;
             }
         }
 
         public override string ToString()
         {
-            return ">>> [" + datetime + "] " + username + " > " + message;
+            return datetime + " : " + username + " : " + message;
         }
 
     }

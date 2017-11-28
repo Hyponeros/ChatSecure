@@ -17,38 +17,132 @@ namespace Client
     {
         private string hostname;
         private int port;
+        private static TextMessage msg;
 
         public Client(string h, int p)
         {
             hostname = h;
             port = p;
+            msg = new TextMessage();
         }
 
         public void startClient()
         {
-            TcpClient comm = new TcpClient(hostname, port);
-            Console.WriteLine(">>> Connexion établie.");
 
             Console.Write("> Votre nom d'utilisateur: ");
             string username = Console.ReadLine();
 
             Console.WriteLine("\n");
 
+            TcpClient comm = new TcpClient(hostname, port);
+            Console.WriteLine(">>> Connexion établie.");
+
+            // Démarrer la réception du broadcast du serveur
+            Thread threadReceiver = new Thread(new ParameterizedThreadStart(receiveServerBroadcast));
+            threadReceiver.Start(comm);
+
+            StreamWriter sw = new StreamWriter(comm.GetStream());
+
+            Console.WriteLine("==========================");
+            Console.WriteLine("====      ChatBox     ====");
+            Console.WriteLine("==========================");
+
             while (true)
             {
-                Console.Write("> Votre message: ");
+                if (comm.Connected)
+                {
+                    Console.Write("> Votre message: ");
+                    string message = Console.ReadLine();
 
-                string message = Console.ReadLine();
-                DateTime localDate = DateTime.Now;
+                    DateTime localDate = DateTime.Now;
 
-                Console.WriteLine("\nEnvoi du message: " + message + " au serveur");
+                    msg._username = username;
+                    msg._message = message;
+                    msg._datetime = localDate.ToString();
+                    msg._error = false;
 
-                Net.sendMsg(comm.GetStream(), new TextMessage(username, message, localDate.ToString(), false));
-                new Thread(new Sender(comm, comm_list).doOperation).Start();
+                    sw.WriteLine("date:" + localDate.ToString());
+                    sw.WriteLine("user:" + username);
+                    sw.WriteLine("msg:" + message);
+                    Console.WriteLine("\n>>> Envoi du message: \"" + message + "\" au serveur");
+                    sw.Flush();
+
+                }
+
+                // Net.SendMessageNotSerialized(comm, new TextMessage(username, message, localDate.ToString(), false));
+
+                /*
+                StreamWriter sw = new StreamWriter(comm.GetStream());
+                string request = sw.ToString();
+                sw.WriteLine(request);
+                sw.AutoFlush = true;
+                */
+
                 // Console.WriteLine("Resultat = " + (TextMessage)Net.receiveMsg(comm.GetStream()));
                 // Thread t = new Thread(new ThreadStart((TextMessage)Net.receiveMsg));
             }
         }
 
+        public void receiveServerBroadcast(object o)
+        {
+            TcpClient client = (TcpClient)o;
+            StreamReader sr = new StreamReader(client.GetStream());
+
+            // NetworkStream stream = client.GetStream();
+
+            // StreamReader sr = new StreamReader(client.GetStream());
+            // TextMessage msg = (TextMessage)Net.receiveMsg(stream);
+
+            // string msg = sr.ReadLine();
+            // Console.WriteLine(" -> Message reçu (" + msg._datetime + "): " + msg._message + " > " + msg._username + ")");
+
+            while (true)
+            {
+                string line = "";
+                int found = 0;
+
+                try
+                {
+                    string s1 = string.Empty;
+                    string s2 = string.Empty;
+                    string s3 = string.Empty;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        line = sr.ReadLine();
+                        found = line.IndexOf(":"); // Extract point
+
+                        if (line.Substring(0, found) == "date")
+                        {
+                            s1 = line.Substring(found + 1);
+                            msg._datetime = line.Substring(found + 1);
+                            // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                        }
+                        else if (line.Substring(0, found) == "user")
+                        {
+                            s2 = line.Substring(found + 1);
+                            msg._username = line.Substring(found + 1);
+                            // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                        }
+                        else if (line.Substring(0, found) == "msg")
+                        {
+                            s3 = line.Substring(found + 1);
+                            // Console.WriteLine(" >> reçu: " + line.Substring(found + 1));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Erreur...");
+                        }
+                    }
+
+                    Console.WriteLine("[" + s1 + "] " + s2 + " > " + s3);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    break;
+                }
+            }
+        }
     }
 }
