@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{10BDA9EB-E830-4077-B887-7480B11ADDC3}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/Authentification.cs">
+    <Files>
+      <File FileName="Server/Program.cs" Line="15" Column="31" />
+      <File FileName="Server/Server.cs" Line="74" Column="49" />
+      <File FileName="Client/Client.cs" Line="31" Column="33" />
+      <File FileName="Server/UserReceiver.cs" Line="82" Column="46" />
+      <File FileName="Server/AuthentificationManager.cs" Line="13" Column="1" />
+      <File FileName="Server/Authentification.cs" Line="31" Column="31" />
+      <File FileName="Client/Program.cs" Line="21" Column="27" />
+      <File FileName="Communication/Net.cs" Line="1" Column="14" />
+      <File FileName="Communication/User.cs" Line="59" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
