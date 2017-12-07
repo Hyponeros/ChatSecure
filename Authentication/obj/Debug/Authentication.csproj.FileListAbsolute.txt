@@ -1,0 +1,10 @@
+C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.csprojResolveAssemblyReference.cache
+C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.csproj.CoreCompileInputs.cache
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Authentication.exe.config
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Authentication.exe
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Authentication.pdb
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Chat.dll
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Chat.pdb
+C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Chat.dll.config
+C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.exe
+C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.pdb
