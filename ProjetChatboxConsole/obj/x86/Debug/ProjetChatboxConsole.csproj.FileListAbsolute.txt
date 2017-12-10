@@ -1,5 +1,0 @@
-/Users/Kous92/Documents/C#/Projet C#/ProjetChatboxConsole/ProjetChatboxConsole/obj/x86/Debug/ProjetChatboxConsole.csproj.CoreCompileInputs.cache
-/Users/Kous92/Documents/C#/Projet C#/ProjetChatboxConsole/ProjetChatboxConsole/bin/Debug/ProjetChatboxConsole.exe
-/Users/Kous92/Documents/C#/Projet C#/ProjetChatboxConsole/ProjetChatboxConsole/bin/Debug/ProjetChatboxConsole.pdb
-/Users/Kous92/Documents/C#/Projet C#/ProjetChatboxConsole/ProjetChatboxConsole/obj/x86/Debug/ProjetChatboxConsole.exe
-/Users/Kous92/Documents/C#/Projet C#/ProjetChatboxConsole/ProjetChatboxConsole/obj/x86/Debug/ProjetChatboxConsole.pdb
