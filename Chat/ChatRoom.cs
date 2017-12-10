@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chat
 {
-    interface ChatRoom
+    public interface ChatRoom
     {
         void post(string msg, Chatter chatter);
         void quit(Chatter chatter);

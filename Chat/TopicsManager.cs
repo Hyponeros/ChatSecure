@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chat
 {
-    interface TopicsManager
+    public interface TopicsManager
     {
         List<string> listTopics();
         ChatRoom joinTopic(string topic);

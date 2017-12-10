@@ -1,0 +1,9 @@
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\bin\Debug\DistantCalculator.exe.config
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\bin\Debug\DistantCalculator.exe
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\bin\Debug\DistantCalculator.pdb
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\bin\Debug\Communication.exe
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\bin\Debug\Communication.pdb
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\obj\Debug\ChatClient.csprojResolveAssemblyReference.cache
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\obj\Debug\DistantCalculator.exe
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ClientCalculator\obj\Debug\DistantCalculator.pdb

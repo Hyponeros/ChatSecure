@@ -75,6 +75,7 @@ namespace Authentication
                 return am;
 
             } catch(System.IO.IOException e) {
+                Console.WriteLine(e);
                 return new Authentification();
             }
         }

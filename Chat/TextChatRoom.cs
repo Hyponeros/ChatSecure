@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Chat
 {
-    class TextChatRoom : ChatRoom
+    public class TextChatRoom : ChatRoom
     {
         private List<Chatter> chatters;
         private string topic;

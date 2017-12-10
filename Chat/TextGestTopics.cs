@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Chat
 {
-    class TextGestTopics : TopicsManager
+    public class TextGestTopics : TopicsManager
     {
-        Dictionary<string, ChatRoom> chatroomByTopic;
+        private Dictionary<string, ChatRoom> chatroomByTopic;
 
         public TextGestTopics()
         {
