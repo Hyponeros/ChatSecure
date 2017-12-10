@@ -1,8 +1,0 @@
-/Users/Kous92/Documents/C#/TestTCPListener/Client/bin/Debug/Client.exe
-/Users/Kous92/Documents/C#/TestTCPListener/Client/bin/Debug/Client.pdb
-/Users/Kous92/Documents/C#/TestTCPListener/Client/bin/Debug/Communication.dll
-/Users/Kous92/Documents/C#/TestTCPListener/Client/bin/Debug/Communication.pdb
-/Users/Kous92/Documents/C#/TestTCPListener/Client/obj/x86/Debug/Client.csprojResolveAssemblyReference.cache
-/Users/Kous92/Documents/C#/TestTCPListener/Client/obj/x86/Debug/Client.csproj.CoreCompileInputs.cache
-/Users/Kous92/Documents/C#/TestTCPListener/Client/obj/x86/Debug/Client.exe
-/Users/Kous92/Documents/C#/TestTCPListener/Client/obj/x86/Debug/Client.pdb
