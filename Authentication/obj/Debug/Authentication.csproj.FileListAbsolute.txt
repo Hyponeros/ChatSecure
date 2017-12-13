@@ -8,13 +8,15 @@ C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Chat.pdb
 C:\Users\arthur\source\repos\Chatsecure\Authentication\bin\Debug\Chat.dll.config
 C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.exe
 C:\Users\arthur\source\repos\Chatsecure\Authentication\obj\Debug\Authentication.pdb
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\obj\Debug\Authentication.csproj.CoreCompileInputs.cache
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Authentication.exe.config
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Authentication.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Authentication.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Chat.exe
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Communication.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Chat.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Chat.exe.config
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\bin\Debug\Communication.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\obj\Debug\Authentication.csprojResolveAssemblyReference.cache
-C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\obj\Debug\Authentication.csproj.CoreCompileInputs.cache
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\obj\Debug\Authentication.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Authentication\obj\Debug\Authentication.pdb

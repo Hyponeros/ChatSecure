@@ -3,9 +3,9 @@ C:\Users\Christian\Documents\Visual Studio 2015\Projects\DistantCalculator\Commu
 C:\Users\Christian\Documents\Visual Studio 2015\Projects\DistantCalculator\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
 C:\Users\Christian\Documents\Visual Studio 2015\Projects\DistantCalculator\Communication\obj\Debug\Communication.dll
 C:\Users\Christian\Documents\Visual Studio 2015\Projects\DistantCalculator\Communication\obj\Debug\Communication.pdb
-C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\bin\Debug\Communication.exe
-C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\bin\Debug\Communication.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\obj\Debug\Communication.csproj.CoreCompileInputs.cache
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\bin\Debug\Communication.exe
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\bin\Debug\Communication.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\obj\Debug\Communication.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Communication\obj\Debug\Communication.pdb

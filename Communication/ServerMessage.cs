@@ -21,6 +21,11 @@ namespace Communication
             return text;
         }
 
+        public void SetAlias(string alias)
+        {
+            return;
+        }
+
         public override string ToString()
         {
             return text;

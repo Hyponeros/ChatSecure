@@ -1,3 +1,4 @@
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\ChatServer.exe.config
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\ChatServer.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\ChatServer.pdb
@@ -10,6 +11,5 @@ C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\Chat.
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\Chat.exe.config
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\bin\Debug\Communication.pdb
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\obj\Debug\ChatServer.csprojResolveAssemblyReference.cache
-C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\obj\Debug\ChatServer.exe
 C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\ChatServer\obj\Debug\ChatServer.pdb

@@ -25,7 +25,7 @@ namespace Communication
 
         public override string ToString()
         {
-            return DateTime.Now.ToString("HH:mm:ss") + " (${author}) : " + text;
+            return DateTime.Now.ToString("HH:mm:ss") + " (" + author + ") : " + text;
         }
 
         public string GetText()

@@ -41,11 +41,17 @@ namespace ChatServer
                     Message msg = rcvMsg();
                     if (msg.GetText().Substring(0,1).Equals("/"))
                     {
-                        specialInstruction(msg);
+                        if (specialInstruction(msg))
+                        {
+                            return;
+                        }
                     } else
                     {
                         msg.SetAlias(chatter.getAlias());
-                        chatroom.post(msg);
+                        lock (chatroom.getAccess())
+                        {
+                            chatroom.post(msg);
+                        }
                     }
                 }
 
@@ -56,9 +62,29 @@ namespace ChatServer
 
         }
 
-        private void specialInstruction(Message msg)
+        //Return true if the user is leaving
+        private bool specialInstruction(Message msg)
         {
-            throw new NotImplementedException();
+            if (msg.GetText().Equals("/quit"))
+            {
+                lock (chatroom.getAccess())
+                {
+                    chatroom.quit(chatter);
+                }
+                
+                return true;
+            } else if (msg.GetText().Equals("/change"))
+            {
+                lock (chatroom.getAccess())
+                {
+                    chatroom.quit(chatter);
+                }
+                joinChatRoom();
+            } else
+            {
+                sendServMsg("Incorrect special instruction, use '/quit' to quit the application and '/change' to change chatroom.");
+            }
+            return false;
         }
 
         private void joinChatRoom()
@@ -76,15 +102,19 @@ namespace ChatServer
             
             //Get appropriate chatroom
             this.chatroom = server.tm.joinTopic(chatname.GetText());
-            chatroom.join(chatter, new SenderDel(sendMsg));
+            lock (chatroom.getAccess())
+            {
+                chatroom.join(chatter, new SenderDel(sendMsg));
+            }
+            
 
-            sendServMsg("Welcome to the ${chatroom.getTopic()} chat.");
+            sendServMsg("Welcome to the " + chatroom.getTopic() + " chat.");
             sendServMsg("Use '/quit' to quit the application and '/change' to change chatroom");
         }
 
         private void sendServMsg(string text)
         {
-            sendMsg(new TextMessage(text));
+            sendMsg(new ServerMessage(text));
         }
         private void sendMsg(Message msg)
         {
@@ -102,11 +132,11 @@ namespace ChatServer
             {
                 //Procédure d'identification
                 sendServMsg("Please enter alias");
-                TextMessage alias = (TextMessage)Net.rcvMsg(comm.GetStream());
+                Message alias = Net.rcvMsg(comm.GetStream());
                 sendServMsg("Please enter login");
-                TextMessage login = (TextMessage)Net.rcvMsg(comm.GetStream());
+                Message login = Net.rcvMsg(comm.GetStream());
                 sendServMsg("Please enter password");
-                TextMessage password = (TextMessage)Net.rcvMsg(comm.GetStream());
+                Message password = Net.rcvMsg(comm.GetStream());
                 User user = new User(alias.GetText(), login.GetText(), password.GetText());
 
                 lock (server.accessAuth)
@@ -115,7 +145,7 @@ namespace ChatServer
                     {
                         server.am.authentify(user.Login, user.Password);
                         sendServMsg("Authentication successful.\n");
-                        chatter = (Chatter)user;
+                        chatter = (Chatter) user;
                         return true;
                     }
                     catch (UserWrongPasswordException e)

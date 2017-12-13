@@ -66,5 +66,10 @@ namespace Chat
         {
             dispatchMessage += del;
         }
+
+        public object getAccess()
+        {
+            return accessCR;
+        }
     }
 }

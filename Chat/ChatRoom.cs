@@ -11,5 +11,6 @@ namespace Chat
         void quit(Chatter chatter);
         void join(Chatter chatter, SenderDel del);
         string getTopic();
+        Object getAccess();
     }
 }
