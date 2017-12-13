@@ -13,6 +13,7 @@ namespace Communication
     {
         string GetText();
         string ToString();
+        void SetAlias(String alias);
     }
 
 

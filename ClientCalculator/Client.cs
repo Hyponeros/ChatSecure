@@ -15,7 +15,6 @@ namespace ChatClient
         private string hostname;
         private int port;
         private TcpClient comm;
-        private String username;
 
         public Client(string h, int p)
         {

@@ -9,9 +9,13 @@ namespace Communication
     [Serializable]
     public class TextMessage : Message
     {
-        public string author;
-        public string text;
+        private string author;
+        private string text;
 
+        public void SetAlias(String alias)
+        {
+            author = alias;
+        }
         public TextMessage(string author, string text)
         {
             this.text = text;

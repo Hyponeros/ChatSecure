@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Communication;
 
 namespace Chat
 {
     public interface ChatRoom
     {
-        void post(string msg, Chatter chatter);
+        void post(Message message);
         void quit(Chatter chatter);
-        void join(Chatter chatter);
+        void join(Chatter chatter, SenderDel del);
         string getTopic();
     }
 }

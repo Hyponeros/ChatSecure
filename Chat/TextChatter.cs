@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Communication;
 
 namespace Chat
 {
@@ -31,15 +31,11 @@ namespace Chat
             return _alias;
         }
 
-        public void receiveAMessage(string msg, Chatter chatter)
-        {
-            //ToDo afficher le message dans la GUI
-            Console.WriteLine("(At " + this._alias + ") : " + chatter.getAlias() + " $> " + msg);
-        }
-
         public override string ToString()
         {
             return _alias;
         }
+
+        
     }
 }
