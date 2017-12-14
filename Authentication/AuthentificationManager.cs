@@ -10,9 +10,10 @@ namespace Authentication
 {
     public interface AuthentificationManager
     {
-        void addUser(string login, string password);
-        void removeUser(string login);
-        void authentify(string login, string password);
+        void addUser(String alias, String login, String password);
+        void removeUser(String login);
+        void authentify(String login, String password);
         void save(String path);
+        String getAlias(String login);
     }
 }

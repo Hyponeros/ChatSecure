@@ -39,18 +39,18 @@ namespace ChatServer
                 while (true)
                 {
                     Message msg = rcvMsg();
-                    if (msg.GetText().Substring(0,1).Equals("/"))
+                    if (msg.ToString().Substring(0,1).Equals("/"))
                     {
                         if (specialInstruction(msg))
                         {
+                            //Quitting
                             return;
                         }
                     } else
                     {
-                        msg.SetAlias(chatter.getAlias());
                         lock (chatroom.getAccess())
                         {
-                            chatroom.post(msg);
+                            chatroom.post(msg.ToString(), this.chatter.getAlias());
                         }
                     }
                 }
@@ -65,60 +65,61 @@ namespace ChatServer
         //Return true if the user is leaving
         private bool specialInstruction(Message msg)
         {
-            if (msg.GetText().Equals("/quit"))
+            if (msg.ToString().Equals("/quit") || msg.ToString().Equals("/change"))
             {
                 lock (chatroom.getAccess())
                 {
                     chatroom.quit(chatter);
                 }
-                
+
+                if (msg.ToString().Equals("/change"))
+                {
+                    joinChatRoom();
+                    return false;
+                }
                 return true;
-            } else if (msg.GetText().Equals("/change"))
+            }  else
             {
-                lock (chatroom.getAccess())
-                {
-                    chatroom.quit(chatter);
-                }
-                joinChatRoom();
-            } else
-            {
-                sendServMsg("Incorrect special instruction, use '/quit' to quit the application and '/change' to change chatroom.");
+                sendSimpleMessage("Incorrect special instruction, use '/quit' to quit the application and '/change' to change chatroom.");
+                return false;
             }
-            return false;
         }
 
         private void joinChatRoom()
         {
-
-            sendServMsg("Please enter a name to join a chatroom among the list to joing or another name to create a new chatroom :");
+            //Joining a chat always succeed because a ne chatroom can be created
+            sendSimpleMessage("Please enter a name to join a chatroom among the list to joing or another name to create a new chatroom :");
             String list = "";
             foreach (String chatRoom in server.tm.listTopics())
             {
                 list += chatRoom + "\n";
             }
-            sendServMsg(list);
+            sendSimpleMessage(list);
 
             Message chatname = rcvMsg();
-            
+
             //Get appropriate chatroom
-            this.chatroom = server.tm.joinTopic(chatname.GetText());
+            lock (server.accessLog)
+            {
+                this.chatroom = server.tm.joinTopic(chatname.ToString());
+            }
             lock (chatroom.getAccess())
             {
                 chatroom.join(chatter, new SenderDel(sendMsg));
             }
             
 
-            sendServMsg("Welcome to the " + chatroom.getTopic() + " chat.");
-            sendServMsg("Use '/quit' to quit the application and '/change' to change chatroom");
+            sendSimpleMessage("Welcome to the " + chatroom.getTopic() + " chat.\n" +
+                 "Use '/quit' to quit the application and '/change' to change chatroom");
+           
         }
-
-        private void sendServMsg(string text)
+        private void sendSimpleMessage(String text)
         {
-            sendMsg(new ServerMessage(text));
+            Net.sendMsg(comm.GetStream(), new TextMessage(text));
         }
-        private void sendMsg(Message msg)
+        private void sendMsg(String text, String author)
         {
-            Net.sendMsg(comm.GetStream(), msg);
+            Net.sendMsg(comm.GetStream(), new TextMessage(text, author));
         }
 
         private Message rcvMsg()
@@ -128,38 +129,44 @@ namespace ChatServer
 
         public bool authenticate()
         {
+            
+            User user;
+
+            //Procédure d'identification
             while (true)
             {
-                //Procédure d'identification
-                sendServMsg("Please enter alias");
-                Message alias = Net.rcvMsg(comm.GetStream());
-                sendServMsg("Please enter login");
+
+                sendSimpleMessage("Please enter login");
                 Message login = Net.rcvMsg(comm.GetStream());
-                sendServMsg("Please enter password");
+                sendSimpleMessage("Please enter password");
                 Message password = Net.rcvMsg(comm.GetStream());
-                User user = new User(alias.GetText(), login.GetText(), password.GetText());
+                user = new User(login.ToString(), password.ToString());
 
                 lock (server.accessAuth)
                 {
                     try
                     {
                         server.am.authentify(user.Login, user.Password);
-                        sendServMsg("Authentication successful.\n");
-                        chatter = (Chatter) user;
+                        sendSimpleMessage("Authentication successful.\n");
+                        user.Alias = server.am.getAlias(user.Login);
+                        this.chatter = (Chatter) user;
                         return true;
                     }
                     catch (UserWrongPasswordException e)
                     {
                         Console.WriteLine(e);
+                        sendSimpleMessage("Login or password incorrect, please try again.");
                     }
                     catch (UserUnknownException e)
                     {
                         Console.WriteLine(e);
+                        sendSimpleMessage("Login or password incorrect, please try again.");
                     }
                 }
 
-                sendServMsg("Login or password incorrect, please try again.");
             }
+            
+            
         }
 
     }

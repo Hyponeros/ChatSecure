@@ -13,9 +13,9 @@ namespace ChatServer
             Server serv = new Server(8976);
 
             //Initatilize Authentification Manager
-            serv.am.addUser("admin", "admin");
-            serv.am.addUser("Bob", "123");
-            serv.am.addUser("", "");
+            serv.am.addUser("admin", "admin", "admin");
+            serv.am.addUser("Bob", "Bob", "123");
+            serv.am.addUser("Arthur", "", "");
 
             //Create ChatRooms
             serv.tm.createTopic("Games");

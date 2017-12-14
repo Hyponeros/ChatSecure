@@ -24,8 +24,8 @@ namespace ChatClient
 
         public void start()
         {
+            //Establish connection
             comm = new TcpClient(hostname, port);
-            Console.WriteLine("Connection established");
 
             Thread readerThread = new Thread(this.ReadStream);
             readerThread.Start();

@@ -6,7 +6,7 @@ using Communication;
 
 namespace Chat
 {
-    public delegate void SenderDel(Message msg);
+    public delegate void SenderDel(String text, String author);
     public class TextChatRoom : ChatRoom
     {
         private List<Chatter> chatters;
@@ -45,9 +45,9 @@ namespace Chat
             chatters.Remove(chatter);
         }
 
-        public void post(Message message)
+        public void post(String text, String author)
         {
-            dispatchMessage(message);
+            dispatchMessage(text, author);
         }
 
         public override string ToString()

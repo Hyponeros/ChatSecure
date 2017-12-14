@@ -16,14 +16,15 @@ namespace ChatServer
 {
     public class Server
     {
-        private int port;
+        public TopicsManager tm { get; }
+        public AuthentificationManager am { get; }
+        
         //Control access to am
         public Object accessAuth { get; }
         //Control access to tm
         public Object accessLog { get; }
-        public TopicsManager tm { get; }
 
-        public AuthentificationManager am { get; }
+        private int port;
 
         public Server(int port)
         {

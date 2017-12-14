@@ -22,14 +22,14 @@ namespace Authentication
             new Dictionary<string, string>();
         }
 
-        public void addUser(string login, string password) 
+        public void addUser(string alias, string login, string password) 
         {
             if (Users.Keys.Contains(login))
             {
                 throw new UserExistException(login);
             } else
             {
-                Users.Add(login, new User(login, password));
+                Users.Add(login, new User(alias, login, password));
             }
 
         }
@@ -90,6 +90,17 @@ namespace Authentication
             bf.Serialize(stream, this);
 
             stream.Close();
+        }
+
+
+        public String getAlias(string login)
+        {
+            if (!Users.Keys.Contains(login))
+            {
+                throw new UserUnknownException(login);
+            }
+
+            return Users[login].Alias;
         }
     }
 }

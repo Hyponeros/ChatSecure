@@ -11,9 +11,7 @@ namespace Communication
     
     public interface Message
     {
-        string GetText();
         string ToString();
-        void SetAlias(String alias);
     }
 
 

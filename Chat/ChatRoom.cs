@@ -7,7 +7,7 @@ namespace Chat
 {
     public interface ChatRoom
     {
-        void post(Message message);
+        void post(String text, String author);
         void quit(Chatter chatter);
         void join(Chatter chatter, SenderDel del);
         string getTopic();

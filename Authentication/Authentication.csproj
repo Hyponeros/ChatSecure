@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6A5E4AA3-6B22-4A9B-9981-420ACB2A9B93}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Authentication</RootNamespace>
     <AssemblyName>Authentication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -49,7 +49,6 @@
     <Compile Include="AuthentificationException.cs" />
     <Compile Include="AuthentificationManager.cs" />
     <Compile Include="IOException.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserExistException.cs" />

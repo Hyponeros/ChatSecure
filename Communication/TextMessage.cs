@@ -9,23 +9,27 @@ namespace Communication
     [Serializable]
     public class TextMessage : Message
     {
-        private string author;
         private string text;
+        private string author;
 
-        public void SetAlias(String alias)
-        {
-            author = alias;
-        }
-        public TextMessage(string author, string text)
+        public TextMessage(string text, string author)
         {
             this.text = text;
-            this.author = author;
+            this.author = author;    
         }
-        public TextMessage(string text) : this(null, text) { }
+
+        public TextMessage(string text) : this(text, null) { }
 
         public override string ToString()
         {
-            return DateTime.Now.ToString("HH:mm:ss") + " (" + author + ") : " + text;
+            if (this.author == null)
+            {
+                return text;
+            }
+            else
+            {
+                return DateTime.Now.ToString("HH:mm:ss") + " (" + author + ") : " + text;
+            }
         }
 
         public string GetText()
