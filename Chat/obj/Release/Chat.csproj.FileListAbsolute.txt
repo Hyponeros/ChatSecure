@@ -1,0 +1,9 @@
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\bin\Release\Chat.dll.config
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\bin\Release\Chat.dll
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\bin\Release\Chat.pdb
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\bin\Release\Communication.dll
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\bin\Release\Communication.pdb
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\obj\Release\Chat.csprojResolveAssemblyReference.cache
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\obj\Release\Chat.csproj.CoreCompileInputs.cache
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\obj\Release\Chat.dll
+C:\Users\arthur\source\repos\GitChatSecure\ChatSecure\Chat\obj\Release\Chat.pdb

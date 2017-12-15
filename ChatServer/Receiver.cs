@@ -20,12 +20,14 @@ namespace ChatServer
         private Server server;
         private Chatter chatter;
         private ChatRoom chatroom;
+        private SenderDel del;
 
         public Receiver(TcpClient s, Server serv)
         {
             comm = s;
             //Beware this server resources are common to all receivers
             server = serv;
+            del = new SenderDel(sendMsg);
         }
 
         public void handleChatter()
@@ -44,6 +46,7 @@ namespace ChatServer
                         if (specialInstruction(msg))
                         {
                             //Quitting
+                            sendSimpleMessage("/quit");
                             return;
                         }
                     } else
@@ -69,7 +72,7 @@ namespace ChatServer
             {
                 lock (chatroom.getAccess())
                 {
-                    chatroom.quit(chatter);
+                    chatroom.quit(chatter, del);
                 }
 
                 if (msg.ToString().Equals("/change"))
@@ -88,6 +91,8 @@ namespace ChatServer
         private void joinChatRoom()
         {
             //Joining a chat always succeed because a ne chatroom can be created
+            sendSimpleMessage("/clear");
+            sendSimpleMessage("Authentication successful.");
             sendSimpleMessage("Please enter a name to join a chatroom among the list to joing or another name to create a new chatroom :");
             String list = "";
             foreach (String chatRoom in server.tm.listTopics())
@@ -105,10 +110,10 @@ namespace ChatServer
             }
             lock (chatroom.getAccess())
             {
-                chatroom.join(chatter, new SenderDel(sendMsg));
+                chatroom.join(chatter, del);
             }
-            
 
+            sendSimpleMessage("/clear");
             sendSimpleMessage("Welcome to the " + chatroom.getTopic() + " chat.\n" +
                  "Use '/quit' to quit the application and '/change' to change chatroom");
            
@@ -147,7 +152,6 @@ namespace ChatServer
                     try
                     {
                         server.am.authentify(user.Login, user.Password);
-                        sendSimpleMessage("Authentication successful.\n");
                         user.Alias = server.am.getAlias(user.Login);
                         this.chatter = (Chatter) user;
                         return true;

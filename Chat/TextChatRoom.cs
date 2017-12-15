@@ -40,8 +40,9 @@ namespace Chat
             this.dispatchMessage += del;
         }
 
-        public void quit(Chatter chatter)
+        public void quit(Chatter chatter, SenderDel del)
         {
+            dispatchMessage -= del;
             chatters.Remove(chatter);
         }
 
